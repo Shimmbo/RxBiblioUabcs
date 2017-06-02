@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="2dp"
+    card_view:cardBackgroundColor="@android:color/white"
+    card_view:cardCornerRadius="4dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/book_photo"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_margin="4dp" />
+
+        <TextView
+            android:id="@+id/bookName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/margin_def"
+            android:layout_toRightOf="@+id/book_photo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+        <TextView
+            android:id="@+id/genres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/bookName"
+            android:layout_marginLeft="@dimen/margin_def"
+            android:layout_toRightOf="@+id/book_photo"
+            android:text="@string/genres"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        <TextView
+            android:id="@+id/authors"
+            android:text="@string/anonymous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/genres"
+            android:layout_marginLeft="@dimen/margin_def"
+            android:layout_toRightOf="@+id/book_photo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+
+

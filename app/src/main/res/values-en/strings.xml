@@ -1,0 +1,48 @@
+<resources>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Login</string>
+    <string name="invalid_email">This email address is invalid</string>
+    <string name="invalid_password">Password is too short</string>
+    <string name="incorrect_password">Password is incorrect</string>
+    <string name="field_required">This field is required</string>
+    <string name="action_settings">Settings</string>
+    <string name="error_login">User/Password Incorrect. Try again</string>
+    <string name="version">Version 1.0.0</string>
+    <string name="copyright_extra">All rights reserved</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="btn_register">Register</string>
+    <string name="btn_link_to_login">Alredy registred! Login Me.</string>
+    <string name="hint_lastname">Lastname</string>
+    <string name="hint_lastname2">Second lastname</string>
+    <string name="hint_control_number">Contorl number</string>
+    <string name="error_register">Problems while registering</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register_success">Registered</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="bookGroup">Find by</string>
+    <string name="by_title">Title</string>
+    <string name="by_author">Author</string>
+    <string name="by_publisher">Publisher</string>
+    <string name="info">Information</string>
+    <string name="about">About</string>
+    <string name="error_books">Error while retrieving books</string>
+    <string name="error_authors">Error while retrieving authors</string>
+    <string name="error_publishers">Errror retrieving publishers</string>
+    <string name="no_data_available">No data available</string>
+    <string name="action_search">Search...</string>
+    <string name="books">Total books: %1$d</string>
+
+    <string name="anonymous">Anonymous</string>
+    <string name="genres">No genres</string>
+    <string name="publisher">Unknown publisher</string>
+    <string name="logout">Logout</string>
+</resources>

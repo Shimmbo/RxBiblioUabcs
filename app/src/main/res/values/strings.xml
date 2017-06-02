@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">BiblioUabcs</string>
+    <string name="copyright" translatable="false">2016-2018 Bibliouabcs <b>inc</b></string>
+    <string name="isbn" translatable="false">ISBN: %1$S</string>
+    <string name="title_activity_base" translatable="false">BaseActivity</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="about">Acerca de</string>
+    <string name="action_settings">Configuraciones</string>
+    <string name="action_sign_in">Iniciar sesión</string>
+    <string name="bookGroup">Buscar por</string>
+    <string name="btn_link_to_login">Ya estoy registrado! Iniciar sesión</string>
+    <string name="btn_register">Registrarse</string>
+    <string name="by_author">Autor</string>
+    <string name="by_publisher">Editorial</string>
+    <string name="by_title">Título</string>
+    <string name="copyright_extra">Todos los derechos reservados</string>
+    <string name="error_authors">Error al intentar traer autores</string>
+    <string name="error_books">Error al intentar traer libros</string>
+    <string name="error_login">Usuario/Contraseña Incorrectos. Intente de nuevo</string>
+    <string name="error_publishers">Error al intentar traer editoriales</string>
+    <string name="error_register">Problemas al intentar registrarse</string>
+    <string name="field_required">El campo es requerido</string>
+    <string name="hint_confirm_password">Confirmar contraseña</string>
+    <string name="hint_control_number">NO Control</string>
+    <string name="hint_email">Correo</string>
+    <string name="hint_lastname">Apellido paterno</string>
+    <string name="hint_lastname2">Apellido materno</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="incorrect_password">Contraseña incorrecta</string>
+    <string name="info">Información</string>
+    <string name="invalid_email">El correo no es válido</string>
+    <string name="invalid_password">Contraseña muy corta</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="prompt_email">Correo</string>
+    <string name="prompt_password">Contraseña</string>
+    <string name="register_success">Registrado!</string>
+    <string name="sign_up">Registrarse</string>
+    <string name="version">Versión 1.0.0</string>
+    <string name="no_data_available">No hay información disponible</string>
+    <string name="action_search">Buscar...</string>
+    <string name="books">Total de libros: %1$d</string>
+    <string name="anonymous">Anónimo</string>
+    <string name="genres">Sin géneros</string>
+    <string name="publisher">Editorial desconocida</string>
+    <string name="logout">Cerrar sesión</string>
+</resources>
