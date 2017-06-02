@@ -17,10 +17,12 @@ import android.widget.TextView;
 import com.jimmy.uabcs.rxbibliouabcs.R;
 import com.jimmy.uabcs.rxbibliouabcs.adapter.BookAdapter;
 import com.jimmy.uabcs.rxbibliouabcs.utils.Utils;
+import com.jimmy.uabcs.rxbibliouabcs.viewmodels.BookAdapterViewModel;
 import com.jimmy.uabcs.rxbibliouabcs.viewmodels.LibraryViewModel;
 import com.trello.rxlifecycle.components.support.RxFragment;
 
 import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class BooksFragment extends RxFragment {
     private static final String BOOKS_PARAM = "books";
@@ -61,6 +63,10 @@ public class BooksFragment extends RxFragment {
                 .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mAdapter::setBooks);
+        mLibraryViewModel.book()
+                .compose(bindToLifecycle())
+                .observeOn(Schedulers.newThread())
+                .subscribe(mAdapter::addBook);
         mLibraryViewModel.getBooks().subscribe(h -> {
                 },
                 e -> Utils.showToast(getActivity(), e.getMessage())
@@ -90,6 +96,13 @@ public class BooksFragment extends RxFragment {
                 return true;
             }
         });
+    }
+
+    public void getBooks() {
+        for(BookAdapterViewModel book : mLibraryViewModel.booksData()) {
+            mLibraryViewModel.getBook(book.getId())
+                    .subscribe(x -> {});
+        }
     }
 
 }
