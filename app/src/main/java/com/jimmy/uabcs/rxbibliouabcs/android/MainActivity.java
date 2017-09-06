@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_byPublisher:
                 fragmentTransaction = true;
-                fragment = new PublisherFragment();
+                fragment = new PublishersFragment();
                 break;
             case R.id.nav_byTitle:
                 fragmentTransaction = true;

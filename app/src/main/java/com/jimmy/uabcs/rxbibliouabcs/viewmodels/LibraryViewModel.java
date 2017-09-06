@@ -2,7 +2,7 @@ package com.jimmy.uabcs.rxbibliouabcs.viewmodels;
 
 import com.jimmy.uabcs.rxbibliouabcs.models.Author;
 import com.jimmy.uabcs.rxbibliouabcs.models.Book;
-import com.jimmy.uabcs.rxbibliouabcs.models.GeneralResponse;
+import com.jimmy.uabcs.rxbibliouabcs.models.BaseResponse;
 import com.jimmy.uabcs.rxbibliouabcs.models.LoginResponse;
 import com.jimmy.uabcs.rxbibliouabcs.models.Publisher;
 import com.jimmy.uabcs.rxbibliouabcs.models.User;
@@ -129,7 +129,7 @@ public class LibraryViewModel {
                 .login(login.getUsername(), login.getPassword(), login.getGrant_type());
     }
 
-    public Observable<GeneralResponse> register(User user) {
+    public Observable<BaseResponse> register(User user) {
         isLoadingSubject.onNext(true);
         return getApi()
                 .register(user);

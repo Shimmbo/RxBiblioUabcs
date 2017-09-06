@@ -51,10 +51,16 @@ public class AuthorsFragment extends RxFragment {
         mAdapter = new AuthorAdapter(getContext());
         emptyView = (TextView) rootView.findViewById(R.id.empty_view);
         mRecyclerView.setAdapter(mAdapter);
+        mLibraryViewModel = LibraryViewModel.getInstance();
         mLibraryViewModel.authors()
                 .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mAdapter::setAuthors);
+
+        mLibraryViewModel.getAuthors().subscribe(h -> {
+                },
+                e -> Utils.showToast(getActivity(), e.getMessage())
+        );
         return rootView;
     }
 

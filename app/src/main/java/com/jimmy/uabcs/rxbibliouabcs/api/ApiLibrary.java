@@ -3,7 +3,7 @@ package com.jimmy.uabcs.rxbibliouabcs.api;
 import com.jimmy.uabcs.rxbibliouabcs.models.Author;
 import com.jimmy.uabcs.rxbibliouabcs.models.Book;
 import com.jimmy.uabcs.rxbibliouabcs.models.Borrow;
-import com.jimmy.uabcs.rxbibliouabcs.models.GeneralResponse;
+import com.jimmy.uabcs.rxbibliouabcs.models.BaseResponse;
 import com.jimmy.uabcs.rxbibliouabcs.models.Genre;
 import com.jimmy.uabcs.rxbibliouabcs.models.LoginResponse;
 import com.jimmy.uabcs.rxbibliouabcs.models.Publisher;
@@ -28,7 +28,7 @@ public interface ApiLibrary {
                                     @Field("grant_type") String grant_type);
 
     @POST("account/register")
-    Observable<GeneralResponse> register(@Body User mUser);
+    Observable<BaseResponse> register(@Body User mUser);
 
     @GET("authors/author/{id}")
     Observable<Author> getAuthor(@Path("id") int id);

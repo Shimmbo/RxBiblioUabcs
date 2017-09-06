@@ -2,7 +2,7 @@ package com.jimmy.uabcs.rxbibliouabcs.models;
 
 import com.google.gson.annotations.Expose;
 
-public class GeneralResponse {
+public class BaseResponse {
     //region Fields
     @Expose
     private boolean Success;

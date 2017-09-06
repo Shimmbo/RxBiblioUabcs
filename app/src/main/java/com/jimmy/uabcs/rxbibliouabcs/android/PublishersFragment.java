@@ -28,13 +28,13 @@ import rx.android.schedulers.AndroidSchedulers;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PublisherFragment extends RxFragment {
+public class PublishersFragment extends RxFragment {
     private RecyclerView mRecyclerView;
     private PublisherAdapter mAdapter;
     private LinearLayoutManager layoutManager;
     private TextView emptyView;
     private LibraryViewModel mLibraryViewModel;
-    public PublisherFragment() {
+    public PublishersFragment() {
     }
 
     @Override
@@ -57,6 +57,10 @@ public class PublisherFragment extends RxFragment {
                 .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mAdapter::setPublishers);
+        mLibraryViewModel.getPublishers().subscribe(h -> {
+                },
+                e -> Utils.showToast(getActivity(), e.getMessage())
+        );
         return rootView;
     }
 

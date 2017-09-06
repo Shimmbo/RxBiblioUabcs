@@ -11,7 +11,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class App extends Application {
-    private static final String BASE_URL = "http://kappatony-001-site1.itempurl.com/api/";
+    private static final String BASE_URL = "http://bibliouabcsdev-001-site1.atempurl.com/api/";
     private static Context mContext;
     private static ApiLibrary api;
 

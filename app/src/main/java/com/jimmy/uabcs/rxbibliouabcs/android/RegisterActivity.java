@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.jimmy.uabcs.rxbibliouabcs.R;
-import com.jimmy.uabcs.rxbibliouabcs.models.GeneralResponse;
 import com.jimmy.uabcs.rxbibliouabcs.models.User;
 import com.jimmy.uabcs.rxbibliouabcs.utils.Utils;
 import com.jimmy.uabcs.rxbibliouabcs.viewmodels.LibraryViewModel;

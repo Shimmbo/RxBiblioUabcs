@@ -21,6 +21,10 @@ public class User {
     private Date LastLogin;
     //endregion
 
+    public User() {
+        Registered = new Date();
+        LastLogin = new Date();
+    }
     //region Getters & Setters
     public String getIdUser() {
         return IdUser;
