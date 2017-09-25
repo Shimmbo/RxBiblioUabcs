@@ -1,11 +1,13 @@
 package com.jimmy.uabcs.rxbibliouabcs.android;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -29,6 +31,7 @@ public class BooksFragment extends RxFragment {
     private LibraryViewModel mLibraryViewModel;
     private TextView emptyView;
     private LinearLayoutManager layoutManager;
+    private ProgressDialog mProgressDialog;
 
     public BooksFragment() {
     }
@@ -57,6 +60,10 @@ public class BooksFragment extends RxFragment {
         mAdapter = new BookAdapter(getContext());
         mRecyclerView.setAdapter(mAdapter);
         mLibraryViewModel = LibraryViewModel.getInstance();
+        mLibraryViewModel.isLoadingObservable()
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::showLoadingDialog);
         mLibraryViewModel.books()
                 .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -90,6 +97,18 @@ public class BooksFragment extends RxFragment {
                 return true;
             }
         });
+    }
+
+    public void showLoadingDialog(boolean isLoading) {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(getActivity());
+            mProgressDialog.setTitle(getString(R.string.wait));
+            mProgressDialog.setMessage(getString(R.string.loading));
+        }
+        if (isLoading)
+            mProgressDialog.show();
+        else
+            mProgressDialog.dismiss();
     }
 
 }

@@ -36,7 +36,7 @@ public interface ApiLibrary {
     @GET("authors/authors")
     Observable<List<Author>> getAuthors();
 
-    @GET("books/book/{id}")
+    @GET("books/getBook/{id}")
     Observable<Book> getBook(@Path("id") int id);
 
     @GET("books/books")

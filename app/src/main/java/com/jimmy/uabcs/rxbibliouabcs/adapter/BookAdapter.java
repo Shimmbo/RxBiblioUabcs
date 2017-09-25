@@ -127,8 +127,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         @Override
         public void onClick(View v) {
             int pos = getLayoutPosition();
-            String jsonBook = GSON.toJson(mItems.get(pos));
-            Fragment bookFragment = BookFragment.newInstance(jsonBook);
+            int id = mItems.get(pos).getId();
+            Fragment bookFragment = BookFragment.newInstance(id);
             FragmentManager manager = ((FragmentActivity) context).getSupportFragmentManager();
             Utils.startFragment(manager, bookFragment);
         }

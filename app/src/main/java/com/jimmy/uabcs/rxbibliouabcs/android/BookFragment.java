@@ -1,5 +1,6 @@
 package com.jimmy.uabcs.rxbibliouabcs.android;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,28 +12,33 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.jimmy.uabcs.rxbibliouabcs.R;
 import com.jimmy.uabcs.rxbibliouabcs.models.Book;
+import com.jimmy.uabcs.rxbibliouabcs.utils.Utils;
 import com.jimmy.uabcs.rxbibliouabcs.utils.VolleySingleton;
 import com.jimmy.uabcs.rxbibliouabcs.viewmodels.BookAdapterViewModel;
+import com.jimmy.uabcs.rxbibliouabcs.viewmodels.LibraryViewModel;
+import com.trello.rxlifecycle.components.support.RxFragment;
+
+import rx.android.schedulers.AndroidSchedulers;
 
 import static com.jimmy.uabcs.rxbibliouabcs.utils.Constants.DEFAULT_IMAGE;
 import static com.jimmy.uabcs.rxbibliouabcs.utils.Constants.GSON;
 import static com.jimmy.uabcs.rxbibliouabcs.utils.Constants.URL;
 
-public class BookFragment extends Fragment {
+public class BookFragment extends RxFragment {
 
 
     private static final String ARG_PARAM1 = "param1";
-
-    private BookAdapterViewModel mBook;
-
+    private LibraryViewModel mLibraryViewModel;
+    private int id;
+    private ProgressDialog mProgressDialog;
     public BookFragment() {
 
     }
 
-    public static BookFragment newInstance(String param1) {
+    public static BookFragment newInstance(int param1) {
         BookFragment fragment = new BookFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
+        args.putInt(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,8 +47,7 @@ public class BookFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            Book _book = GSON.fromJson(getArguments().getString(ARG_PARAM1), Book.class);
-            mBook = new BookAdapterViewModel(_book);
+            id = getArguments().getInt(ARG_PARAM1);
         }
     }
 
@@ -50,27 +55,56 @@ public class BookFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_book, container, false);
-        TextView title = (TextView) rootView.findViewById(R.id.title);
-        title.setText(mBook.getName());
-        String imaegPath = mBook.getImage();
-        NetworkImageView img = (NetworkImageView) rootView.findViewById(R.id.thumbnail);
+        mLibraryViewModel = LibraryViewModel.getInstance();
+        mLibraryViewModel.isLoadingObservable()
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::showLoadingDialog);
+        mLibraryViewModel.book()
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::DisplayBook);
+        mLibraryViewModel.getBook(id).subscribe(h -> {
+                },
+                e -> Utils.showToast(getActivity(), e.getMessage())
+        );
+        return rootView;
+    }
+
+    public void DisplayBook(BookAdapterViewModel book) {
+        if (getView() == null) return;
+        TextView title = (TextView) getView().findViewById(R.id.title);
+        title.setText(book.getName());
+        String imaegPath = book.getImage();
+        NetworkImageView img = (NetworkImageView) getView().findViewById(R.id.thumbnail);
         ImageLoader mImageLoader = VolleySingleton.getInstance().getImageLoader();
         if (imaegPath == null || imaegPath == "")
             img.setImageUrl(URL + DEFAULT_IMAGE, mImageLoader);
         else
             img.setImageUrl(URL + imaegPath, mImageLoader);
 
-        TextView authors = (TextView) rootView.findViewById(R.id.authors);
-        authors.setText(mBook.getAuthor());
+        TextView authors = (TextView) getView().findViewById(R.id.authors);
+        authors.setText(book.getAuthor());
 
-        TextView isbn = (TextView) rootView.findViewById(R.id.isbn);
-        isbn.setText(getString(R.string.isbn, mBook.getISBN()));
+        TextView isbn = (TextView) getView().findViewById(R.id.isbn);
+        isbn.setText(getString(R.string.isbn, book.getISBN()));
 
-        TextView genres = (TextView) rootView.findViewById(R.id.genre);
-        genres.setText(mBook.getGenre());
+        TextView genres = (TextView) getView().findViewById(R.id.genre);
+        genres.setText(book.getGenre());
 
-        TextView publisher = (TextView) rootView.findViewById(R.id.publisher);
-        publisher.setText(mBook.getPublisherName());
-        return rootView;
+        TextView publisher = (TextView) getView().findViewById(R.id.publisher);
+        publisher.setText(book.getPublisherName());
+    }
+
+    public void showLoadingDialog(boolean isLoading) {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(getActivity());
+            mProgressDialog.setTitle(getString(R.string.wait));
+            mProgressDialog.setMessage(getString(R.string.loading));
+        }
+        if (isLoading)
+            mProgressDialog.show();
+        else
+            mProgressDialog.dismiss();
     }
 }

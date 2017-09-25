@@ -46,4 +46,6 @@
     <string name="genres">Sin géneros</string>
     <string name="publisher">Editorial desconocida</string>
     <string name="logout">Cerrar sesión</string>
+    <string name="wait">Espere...</string>
+    <string name="loading">Obteniendo resultados...</string>
 </resources>

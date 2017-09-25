@@ -45,4 +45,6 @@
     <string name="genres">No genres</string>
     <string name="publisher">Unknown publisher</string>
     <string name="logout">Logout</string>
+    <string name="wait">Wait...</string>
+    <string name="loading">Retriving results...</string>
 </resources>

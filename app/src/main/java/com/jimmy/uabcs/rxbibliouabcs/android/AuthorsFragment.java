@@ -1,6 +1,7 @@
 package com.jimmy.uabcs.rxbibliouabcs.android;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
@@ -33,6 +34,7 @@ public class AuthorsFragment extends RxFragment {
     private LinearLayoutManager layoutManager;
     private TextView emptyView;
     private LibraryViewModel mLibraryViewModel;
+    private ProgressDialog mProgressDialog;
     public AuthorsFragment() {
     }
 
@@ -52,6 +54,10 @@ public class AuthorsFragment extends RxFragment {
         emptyView = (TextView) rootView.findViewById(R.id.empty_view);
         mRecyclerView.setAdapter(mAdapter);
         mLibraryViewModel = LibraryViewModel.getInstance();
+        mLibraryViewModel.isLoadingObservable()
+                .compose(bindToLifecycle())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(this::showLoadingDialog);
         mLibraryViewModel.authors()
                 .compose(bindToLifecycle())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -86,5 +92,17 @@ public class AuthorsFragment extends RxFragment {
                 return true;
             }
         });
+    }
+
+    public void showLoadingDialog(boolean isLoading) {
+        if (mProgressDialog == null) {
+            mProgressDialog = new ProgressDialog(getActivity());
+            mProgressDialog.setTitle(getString(R.string.wait));
+            mProgressDialog.setMessage(getString(R.string.loading));
+        }
+        if (isLoading)
+            mProgressDialog.show();
+        else
+            mProgressDialog.dismiss();
     }
 }
