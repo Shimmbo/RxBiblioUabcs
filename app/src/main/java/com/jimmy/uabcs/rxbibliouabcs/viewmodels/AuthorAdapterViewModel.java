@@ -15,6 +15,10 @@ public class AuthorAdapterViewModel {
     public AuthorAdapterViewModel(Author author) {
         this.author = author;
     }
+
+    public int getIdAuthor() {
+        return this.author .getIdAuthor();
+    }
     public String getName() {
         return this.author.getName();
     }

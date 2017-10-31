@@ -58,4 +58,8 @@ public class BookAdapterViewModel {
     public int getId() {
         return this.book.getIdBook();
     }
+
+    public String getDescription() {
+        return this.book.getDescription();
+    }
 }

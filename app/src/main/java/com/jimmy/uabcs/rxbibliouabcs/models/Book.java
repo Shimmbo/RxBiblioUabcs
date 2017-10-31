@@ -23,6 +23,7 @@ public class Book {
     private String ISSN;
     private String Path;
     private String ImagePath;
+    private String Description;
     private List<Author> Author;
     private List<Genre> Genre;
     private Publisher Publisher;
@@ -149,5 +150,14 @@ public class Book {
     public void setPublisher(com.jimmy.uabcs.rxbibliouabcs.models.Publisher publisher) {
         Publisher = publisher;
     }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
+    }
+
     //endregion
 }

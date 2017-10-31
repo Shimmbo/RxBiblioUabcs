@@ -15,6 +15,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.jimmy.uabcs.rxbibliouabcs.App;
 import com.jimmy.uabcs.rxbibliouabcs.R;
+import com.jimmy.uabcs.rxbibliouabcs.android.AuthorFragment;
 import com.jimmy.uabcs.rxbibliouabcs.models.Author;
 import com.jimmy.uabcs.rxbibliouabcs.utils.Utils;
 import com.jimmy.uabcs.rxbibliouabcs.utils.VolleySingleton;
@@ -113,10 +114,9 @@ public class AuthorAdapter extends RecyclerView.Adapter<AuthorAdapter.ViewHolder
         @Override
         public void onClick(View v) {
             int pos = getLayoutPosition();
-            String jsonBooks = GSON.toJson(mItems.get(pos).getBook());
-            Fragment booksFragment = BooksFragment.newInstance(jsonBooks);
+            Fragment authorFragment = AuthorFragment.newInstance(mItems.get(pos).getIdAuthor());
             FragmentManager manager = ((FragmentActivity) context).getSupportFragmentManager();
-            Utils.startFragment(manager, booksFragment);
+            Utils.startFragment(manager, authorFragment);
         }
     }
 }

@@ -1,22 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:paddingBottom="8dp"
-    card_view:cardBackgroundColor="@color/uabcsColor"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardUseCompatPadding="true">
+    android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/uabcsColor"
         android:padding="16dp">
 
         <com.android.volley.toolbox.NetworkImageView
-            android:id="@+id/book_photo"
+            android:id="@+id/thumbnail"
             android:layout_width="317px"
             android:layout_height="317px"
             android:gravity="center" />
@@ -31,7 +27,7 @@
             android:paddingTop="11dp">
 
             <TextView
-                android:id="@+id/bookName"
+                android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:maxLines="2"
@@ -43,7 +39,7 @@
 
 
             <TextView
-                android:id="@+id/authors"
+                android:id="@+id/totalbooks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="16dp"
@@ -52,19 +48,30 @@
                 android:textColor="@android:color/white"
                 android:textSize="12dp"
                 android:textStyle="italic" />
-
-            <TextView
-                android:id="@+id/genres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:singleLine="true"
-                android:text="@string/no_genre"
-                android:textColor="@android:color/white"
-                android:textSize="14dp"
-                android:textStyle="italic" />
         </LinearLayout>
     </LinearLayout>
-</android.support.v7.widget.CardView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/bookList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/padding_def"
+            android:paddingRight="@dimen/padding_def"
+            android:paddingTop="@dimen/padding_def"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/no_data_available"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+</RelativeLayout>

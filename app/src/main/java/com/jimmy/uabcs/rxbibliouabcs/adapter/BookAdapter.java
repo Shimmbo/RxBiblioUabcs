@@ -88,8 +88,16 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.ViewHolder> {
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String s = formatter.format(mBook.getYear());
         viewHolder.name.setText(mBook.getName());
-        viewHolder.genres.setText(mBook.getGenre());
-        viewHolder.authors.setText(mBook.getAuthor());
+
+        String genre = mBook.getGenre() == null || mBook.getGenre() == "" ?
+                context.getString(R.string.no_genre) : mBook.getGenre();
+
+        viewHolder.genres.setText(context.getString(R.string.genre_param, genre));
+
+        String author = mBook.getAuthor() == null || mBook.getAuthor() == "" ?
+                context.getString(R.string.annonymous) : mBook.getAuthor();
+
+        viewHolder.authors.setText(context.getString(R.string.author_param, author));
         ImageLoader mImageLoader = VolleySingleton.getInstance().getImageLoader();
         viewHolder.mImageView.setDefaultImageResId(R.drawable.no_book_image);
 

@@ -15,6 +15,9 @@ public class PublisherAdapterViewModel {
     public PublisherAdapterViewModel(Publisher publisher) {
         this.publisher = publisher;
     }
+    public int getIdAuthor() {
+        return this.publisher.getIdPublisher();
+    }
     public String getName() {
         return this.publisher.getName();
     }

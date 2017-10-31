@@ -29,6 +29,8 @@ public class LibraryViewModel {
     private BehaviorSubject<ArrayList<AuthorAdapterViewModel>> authorsSubject =
             BehaviorSubject.create(new ArrayList<AuthorAdapterViewModel>());
     private BehaviorSubject<BookAdapterViewModel> bookSubject = BehaviorSubject.create();
+    private BehaviorSubject<AuthorAdapterViewModel> authorSubject = BehaviorSubject.create();
+    private BehaviorSubject<PublisherAdapterViewModel> publisherSubject = BehaviorSubject.create();
     private BehaviorSubject<Boolean> isLoadingSubject = BehaviorSubject.create(false);
 
     private static LibraryViewModel mInstance;
@@ -123,6 +125,40 @@ public class LibraryViewModel {
                 .doOnTerminate(() -> isLoadingSubject.onNext(false));
     }
 
+    public Observable<AuthorAdapterViewModel> getAuthor(int id) {
+        if (isLoadingSubject.getValue()) {
+            return Observable.empty();
+        }
+
+        isLoadingSubject.onNext(true);
+        return getApi()
+                .getAuthor(id)
+                .observeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.newThread())
+                .map(author -> new AuthorAdapterViewModel(author))
+                .doOnNext(author -> {
+                    authorSubject.onNext(author);
+                })
+                .doOnTerminate(() -> isLoadingSubject.onNext(false));
+    }
+
+    public Observable<PublisherAdapterViewModel> getPublisher(int id) {
+        if (isLoadingSubject.getValue()) {
+            return Observable.empty();
+        }
+
+        isLoadingSubject.onNext(true);
+        return getApi()
+                .getPublisher(id)
+                .observeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.newThread())
+                .map(publisher -> new PublisherAdapterViewModel(publisher))
+                .doOnNext(publisher -> {
+                    publisherSubject.onNext(publisher);
+                })
+                .doOnTerminate(() -> isLoadingSubject.onNext(false));
+    }
+
     public Observable<LoginResponse> login(UserLogin login) {
         isLoadingSubject.onNext(true);
         return getApi()
@@ -145,9 +181,19 @@ public class LibraryViewModel {
     public ArrayList<BookAdapterViewModel> booksData() {
         return booksSubject.getValue();
     }
+
     public Observable<BookAdapterViewModel> book() {
         return bookSubject.asObservable();
     }
+
+    public Observable<AuthorAdapterViewModel> author() {
+        return authorSubject.asObservable();
+    }
+
+    public Observable<PublisherAdapterViewModel> publisher() {
+        return publisherSubject.asObservable();
+    }
+
     public Observable<ArrayList<AuthorAdapterViewModel>> authors() {
         return authorsSubject.asObservable();
     }

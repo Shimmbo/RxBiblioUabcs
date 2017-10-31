@@ -47,4 +47,11 @@
     <string name="logout">Logout</string>
     <string name="wait">Wait...</string>
     <string name="loading">Retriving results...</string>
+    <string name="no_genre">Without genre</string>
+    <string name="annonymous">Annonymous</string>
+    <string name="author_param">Author: %1$s</string>
+    <string name="genre_param">Genre: %1$s</string>
+    <string name="publisher_param">Publisher: %1$s</string>
+    <string name="description">Description</string>
+    <string name="no_publisher">No publisher</string>
 </resources>

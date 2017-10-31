@@ -48,4 +48,11 @@
     <string name="logout">Cerrar sesión</string>
     <string name="wait">Espere...</string>
     <string name="loading">Obteniendo resultados...</string>
+    <string name="no_genre">Sin género</string>
+    <string name="annonymous">Anónimo</string>
+    <string name="author_param">Autor: %1$s</string>
+    <string name="genre_param">Género: %1$s</string>
+    <string name="publisher_param">Editorial: %1$s</string>
+    <string name="description">Descripción</string>
+    <string name="no_publisher">Sin editorial</string>
 </resources>

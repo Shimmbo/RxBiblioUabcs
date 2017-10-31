@@ -9,7 +9,7 @@ public interface Constants {
     String IS_USER_LOGIN = "IsUserLoggedIn";
     String KEY_USER = "User";
     int PRIVATE_MODE = 0;
-    String URL = "http://shimmbo-001-site1.ctempurl.com/";
+    String URL = "http://aguacatero-001-site1.htempurl.com";
     String DEFAULT_IMAGE = "images/default.jpg";
     String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
     Gson GSON = new GsonBuilder()
